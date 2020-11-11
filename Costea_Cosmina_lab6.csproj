@@ -142,8 +142,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoLotModel\AutoLotModel.csproj">
-      <Project>{6bf87e68-851d-4762-9333-d4ccfadf3b59}</Project>
+    <ProjectReference Include="AutoLotModel\AutoLotModel.csproj">
+      <Project>{9a8ffeb2-0d3b-470d-b8cc-89bfdbd115aa}</Project>
       <Name>AutoLotModel</Name>
     </ProjectReference>
   </ItemGroup>
