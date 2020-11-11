@@ -44,9 +44,6 @@ namespace Costea_Cosmina_lab6
         Binding carIdTextBoxBinding = new Binding();
         Binding colorTextBoxBinding = new Binding();
         Binding makeTextBoxBinding = new Binding();
-
-        Binding txtInventoryBinding = new Binding();
-        Binding txtCustomersBinding = new Binding();
         public MainWindow()
         {
             InitializeComponent();
@@ -60,6 +57,7 @@ namespace Costea_Cosmina_lab6
             customerOrdersViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("customerOrdersViewSource")));
             //customerOrdersViewSource.Source = ctx.Orders.Local;
             inventoryViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("inventoryViewSource")));
+            inventoryViewSource.Source = ctx.Inventories.Local;
             BindDataGrid();
             ctx.Customers.Load();
             ctx.Orders.Load();
