@@ -48,8 +48,15 @@ namespace Costea_Cosmina_lab6
         {
             InitializeComponent();
             DataContext = this;
-        }
 
+            custIdTextBoxBinding.Path = new PropertyPath("CustId");
+            firstNameTextBoxBinding.Path = new PropertyPath("FirstName");
+            lastNameTextBoxBinding.Path = new PropertyPath("LastName");
+
+            carIdTextBoxBinding.Path = new PropertyPath("CarId");
+            colorTextBoxBinding.Path = new PropertyPath("Color");
+            makeTextBoxBinding.Path = new PropertyPath("Make");
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             customerViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("customerViewSource")));
@@ -123,10 +130,11 @@ namespace Costea_Cosmina_lab6
 
             btnSave.IsEnabled = true;
             btnCancel.IsEnabled = true;
+
             btnPrev.IsEnabled = false;
             btnNext.IsEnabled = false;
 
-            custIdTextBox.IsEnabled = true;
+            custIdTextBox.IsEnabled = false;
             firstNameTextBox.IsEnabled = true;
             lastNameTextBox.IsEnabled = true;
 
@@ -144,10 +152,9 @@ namespace Costea_Cosmina_lab6
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             action = ActionState.Edit;
-
-            string tempcustIdTextBox = custIdTextBox.Text.ToString();
-            string tempfirstNameTextBox = firstNameTextBox.Text.ToString();
-            string templastNameTextBox = lastNameTextBox.Text.ToString();
+            string tempCustId = custIdTextBox.Text.ToString();
+            string tempFirstName = firstNameTextBox.Text.ToString();
+            string tempLastName = lastNameTextBox.Text.ToString();
 
             btnNew.IsEnabled = false;
             btnEdit.IsEnabled = false;
@@ -155,10 +162,11 @@ namespace Costea_Cosmina_lab6
 
             btnSave.IsEnabled = true;
             btnCancel.IsEnabled = true;
+
             btnPrev.IsEnabled = false;
             btnNext.IsEnabled = false;
 
-            custIdTextBox.IsEnabled = true;
+            custIdTextBox.IsEnabled = false;
             firstNameTextBox.IsEnabled = true;
             lastNameTextBox.IsEnabled = true;
 
@@ -166,11 +174,12 @@ namespace Costea_Cosmina_lab6
             BindingOperations.ClearBinding(firstNameTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(lastNameTextBox, TextBox.TextProperty);
 
-            custIdTextBox.Text = "";
-            firstNameTextBox.Text = "";
-            lastNameTextBox.Text = "";
+            custIdTextBox.Text = tempCustId;
+            firstNameTextBox.Text = tempFirstName;
+            lastNameTextBox.Text = tempLastName;
 
             Keyboard.Focus(custIdTextBox);
+            SetValidationBinding();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -187,6 +196,7 @@ namespace Costea_Cosmina_lab6
 
             btnSave.IsEnabled = true;
             btnCancel.IsEnabled = true;
+
             btnPrev.IsEnabled = false;
             btnNext.IsEnabled = false;
 
@@ -219,6 +229,19 @@ namespace Costea_Cosmina_lab6
                 {
                     MessageBox.Show(ex.Message);
                 }
+                btnNew.IsEnabled = true;
+                btnEdit.IsEnabled = true;
+                btnDelete.IsEnabled = true;
+
+                btnSave.IsEnabled = false;
+                btnCancel.IsEnabled = false;
+
+                btnPrev.IsEnabled = true;
+                btnNext.IsEnabled = true;
+
+                custIdTextBox.IsEnabled = false;
+                firstNameTextBox.IsEnabled = false;
+                lastNameTextBox.IsEnabled = false;
             }
             else if (action == ActionState.Edit)
             {
@@ -235,6 +258,24 @@ namespace Costea_Cosmina_lab6
                 }
                 customerViewSource.View.Refresh();
                 customerViewSource.View.MoveCurrentTo(customer);
+
+                btnNew.IsEnabled = true;
+                btnEdit.IsEnabled = true;
+                btnDelete.IsEnabled = true;
+
+                btnSave.IsEnabled = false;
+                btnCancel.IsEnabled = false;
+
+                btnPrev.IsEnabled = true;
+                btnNext.IsEnabled = true;
+
+                custIdTextBox.IsEnabled = false;
+                firstNameTextBox.IsEnabled = false;
+                lastNameTextBox.IsEnabled = false;
+
+                custIdTextBox.SetBinding(TextBox.TextProperty, custIdTextBoxBinding);
+                firstNameTextBox.SetBinding(TextBox.TextProperty, firstNameTextBoxBinding);
+                lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameTextBoxBinding);
             }
             else if (action == ActionState.Delete)
                 {
@@ -249,7 +290,24 @@ namespace Costea_Cosmina_lab6
                         MessageBox.Show(ex.Message);
                     }
                     customerViewSource.View.Refresh();
-                }
+                    btnNew.IsEnabled = true;
+                    btnEdit.IsEnabled = true;
+                    btnDelete.IsEnabled = true;
+
+                    btnSave.IsEnabled = false;
+                    btnCancel.IsEnabled = false;
+
+                    btnPrev.IsEnabled = true;
+                    btnNext.IsEnabled = true;
+
+                    custIdTextBox.IsEnabled = false;
+                    firstNameTextBox.IsEnabled = false;
+                    lastNameTextBox.IsEnabled = false;
+
+                    custIdTextBox.SetBinding(TextBox.TextProperty, custIdTextBoxBinding);
+                    firstNameTextBox.SetBinding(TextBox.TextProperty, firstNameTextBoxBinding);
+                    lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameTextBoxBinding);
+            }
             SetValidationBinding();
         }
 
@@ -259,10 +317,11 @@ namespace Costea_Cosmina_lab6
 
             btnNew.IsEnabled = true;
             btnEdit.IsEnabled = true;
-            btnEdit.IsEnabled = true;
+            btnDelete.IsEnabled = true;
 
             btnSave.IsEnabled = false;
             btnCancel.IsEnabled = false;
+
             btnPrev.IsEnabled = true;
             btnNext.IsEnabled = true;
 
@@ -288,16 +347,17 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.New;
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnNewI.IsEnabled = false;
+            btnEditI.IsEnabled = false;
+            btnDeleteI.IsEnabled = false;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnSaveI.IsEnabled = true;
+            btnCancelI.IsEnabled = true;
 
-            carIdTextBox.IsEnabled = true;
+            btnPrevI.IsEnabled = false;
+            btnNextI.IsEnabled = false;
+
+            carIdTextBox.IsEnabled = false;
             colorTextBox.IsEnabled = true;
             makeTextBox.IsEnabled = true;
 
@@ -314,21 +374,21 @@ namespace Costea_Cosmina_lab6
         private void btnEditI_Click(object sender, RoutedEventArgs e)
         {
             action = ActionState.Edit;
+            string tempCarId = carIdTextBox.Text.ToString();
+            string tempColor = colorTextBox.Text.ToString();
+            string tempMake = makeTextBox.Text.ToString();
 
-            string tempcarIdTextBox = carIdTextBox.Text.ToString();
-            string tempcolorTextBox = colorTextBox.Text.ToString();
-            string tempmakeTextBox = makeTextBox.Text.ToString();
+            btnNewI.IsEnabled = false;
+            btnEditI.IsEnabled = false;
+            btnDeleteI.IsEnabled = false;
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnSaveI.IsEnabled = true;
+            btnCancelI.IsEnabled = true;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnPrevI.IsEnabled = false;
+            btnNextI.IsEnabled = false;
 
-            carIdTextBox.IsEnabled = true;
+            carIdTextBox.IsEnabled = false;
             colorTextBox.IsEnabled = true;
             makeTextBox.IsEnabled = true;
 
@@ -336,9 +396,9 @@ namespace Costea_Cosmina_lab6
             BindingOperations.ClearBinding(colorTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(makeTextBox, TextBox.TextProperty);
 
-            carIdTextBox.Text = "";
-            colorTextBox.Text = "";
-            makeTextBox.Text = "";
+            carIdTextBox.Text = tempCarId;
+            makeTextBox.Text = tempMake;
+            colorTextBox.Text = tempColor;
 
             Keyboard.Focus(carIdTextBox);
         }
@@ -351,14 +411,15 @@ namespace Costea_Cosmina_lab6
             string tempcolorTextBox = colorTextBox.Text.ToString();
             string tempmakeTextBox = makeTextBox.Text.ToString();
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnNewI.IsEnabled = false;
+            btnEditI.IsEnabled = false;
+            btnDeleteI.IsEnabled = false;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnSaveI.IsEnabled = true;
+            btnCancelI.IsEnabled = true;
+
+            btnPrevI.IsEnabled = false;
+            btnNextI.IsEnabled = false;
 
             BindingOperations.ClearBinding(carIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(colorTextBox, TextBox.TextProperty);
@@ -389,6 +450,20 @@ namespace Costea_Cosmina_lab6
                 {
                     MessageBox.Show(ex.Message);
                 }
+
+                btnNewI.IsEnabled = true;
+                btnEditI.IsEnabled = true;
+                btnDeleteI.IsEnabled = true;
+
+                btnSaveI.IsEnabled = false;
+                btnCancelI.IsEnabled = false;
+
+                btnPrevI.IsEnabled = true;
+                btnNextI.IsEnabled = true;
+
+                carIdTextBox.IsEnabled = false;
+                colorTextBox.IsEnabled = false;
+                makeTextBox.IsEnabled = false;
             }
             else if (action == ActionState.Edit)
             {
@@ -405,6 +480,24 @@ namespace Costea_Cosmina_lab6
                 }
                 inventoryViewSource.View.Refresh();
                 inventoryViewSource.View.MoveCurrentTo(inventory);
+
+                btnNewI.IsEnabled = true;
+                btnEditI.IsEnabled = true;
+                btnDeleteI.IsEnabled = true;
+
+                btnSaveI.IsEnabled = false;
+                btnCancelI.IsEnabled = false;
+
+                btnPrevI.IsEnabled = true;
+                btnNextI.IsEnabled = true;
+
+                carIdTextBox.IsEnabled = false;
+                colorTextBox.IsEnabled = false;
+                makeTextBox.IsEnabled = false;
+
+                carIdTextBox.SetBinding(TextBox.TextProperty, carIdTextBoxBinding);
+                colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
+                makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
             }
             else if (action == ActionState.Delete)
             {
@@ -419,6 +512,24 @@ namespace Costea_Cosmina_lab6
                     MessageBox.Show(ex.Message);
                 }
                 inventoryViewSource.View.Refresh();
+
+                btnNewI.IsEnabled = true;
+                btnEditI.IsEnabled = true;
+                btnDeleteI.IsEnabled = true;
+
+                btnSaveI.IsEnabled = false;
+                btnCancelI.IsEnabled = false;
+
+                btnPrevI.IsEnabled = true;
+                btnNextI.IsEnabled = true;
+
+                carIdTextBox.IsEnabled = false;
+                colorTextBox.IsEnabled = false;
+                makeTextBox.IsEnabled = false;
+
+                carIdTextBox.SetBinding(TextBox.TextProperty, carIdTextBoxBinding);
+                colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
+                makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
             }
             SetValidationBinding();
         }
@@ -427,14 +538,15 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Nothing;
 
-            btnNew.IsEnabled = true;
-            btnEdit.IsEnabled = true;
-            btnEdit.IsEnabled = true;
+            btnNewI.IsEnabled = true;
+            btnEditI.IsEnabled = true;
+            btnDeleteI.IsEnabled = true;
 
-            btnSave.IsEnabled = false;
-            btnCancel.IsEnabled = false;
-            btnPrev.IsEnabled = true;
-            btnNext.IsEnabled = true;
+            btnSaveI.IsEnabled = false;
+            btnCancelI.IsEnabled = false;
+
+            btnPrevI.IsEnabled = true;
+            btnNextI.IsEnabled = true;
 
             carIdTextBox.IsEnabled = false;
             colorTextBox.IsEnabled = false;
@@ -459,14 +571,15 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.New;
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnNewO.IsEnabled = false;
+            btnEditO.IsEnabled = false;
+            btnDeleteO.IsEnabled = false;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnSaveO.IsEnabled = true;
+            btnCancelO.IsEnabled = true;
+
+            btnPrevO.IsEnabled = false;
+            btnNextO.IsEnabled = false;
 
             cmbCustomers.IsEnabled = true;
             cmbInventory.IsEnabled = true;
@@ -480,14 +593,15 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Edit;
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnNewO.IsEnabled = false;
+            btnEditO.IsEnabled = false;
+            btnDeleteO.IsEnabled = false;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnSaveO.IsEnabled = true;
+            btnCancelO.IsEnabled = true;
+
+            btnPrevO.IsEnabled = false;
+            btnNextO.IsEnabled = false;
 
             cmbCustomers.IsEnabled = true;
             cmbInventory.IsEnabled = true;
@@ -501,14 +615,15 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Delete;
 
-            btnNew.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnDelete.IsEnabled = false;
+            btnNewO.IsEnabled = false;
+            btnEditO.IsEnabled = false;
+            btnDeleteO.IsEnabled = false;
 
-            btnSave.IsEnabled = true;
-            btnCancel.IsEnabled = true;
-            btnPrev.IsEnabled = false;
-            btnNext.IsEnabled = false;
+            btnSaveO.IsEnabled = true;
+            btnCancelO.IsEnabled = true;
+
+            btnPrevO.IsEnabled = false;
+            btnNextO.IsEnabled = false;
 
             //binding
         }
@@ -583,14 +698,15 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Nothing;
 
-            btnNew.IsEnabled = true;
-            btnEdit.IsEnabled = true;
-            btnEdit.IsEnabled = true;
+            btnNewO.IsEnabled = true;
+            btnEditO.IsEnabled = true;
+            btnDeleteO.IsEnabled = true;
 
-            btnSave.IsEnabled = false;
-            btnCancel.IsEnabled = false;
-            btnPrev.IsEnabled = true;
-            btnNext.IsEnabled = true;
+            btnSaveO.IsEnabled = false;
+            btnCancelO.IsEnabled = false;
+
+            btnPrevO.IsEnabled = true;
+            btnNextO.IsEnabled = true;
 
             cmbCustomers.IsEnabled = false;
             cmbInventory.IsEnabled = false;

@@ -142,11 +142,12 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="150,126,181.2,66.8" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsSynchronizedWithCurrentItem="True" Margin="150,123,181.2,74.8">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="carIdColumn1" Binding="{Binding CarId}" Header="Car Id" Width="SizeToHeader"/>
-                            <DataGridTextColumn x:Name="custIdColumn1" Binding="{Binding CustId}" Header="Cust Id" Width="SizeToHeader"/>
-                            <DataGridTextColumn x:Name="orderIdColumn" Binding="{Binding OrderId}" Header="Order Id" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="FirstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="LastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="MakeColumn" Binding="{Binding Make}" Header="Make" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="ColorColumn" Binding="{Binding Color}" Header="Color" Width="SizeToHeader"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label x:Name="lblCustomers" Content="Customers" HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top"/>
