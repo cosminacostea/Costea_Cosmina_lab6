@@ -117,7 +117,7 @@ namespace Costea_Cosmina_lab6
             lastNameValidationBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             lastNameValidationBinding.ValidationRules.Add(new StringMinLengthValidator());
 
-            lastNameTextBox.SetBinding(TextBox.TextProperty,lastNameValidationBinding); 
+            lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameValidationBinding); 
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -531,7 +531,6 @@ namespace Costea_Cosmina_lab6
                 colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
                 makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
             }
-            SetValidationBinding();
         }
 
         private void btnCancelI_Click(object sender, RoutedEventArgs e)
@@ -584,8 +583,6 @@ namespace Costea_Cosmina_lab6
             cmbCustomers.IsEnabled = true;
             cmbInventory.IsEnabled = true;
 
-            //binding
-
             Keyboard.Focus(cmbCustomers);
         }
 
@@ -606,8 +603,6 @@ namespace Costea_Cosmina_lab6
             cmbCustomers.IsEnabled = true;
             cmbInventory.IsEnabled = true;
 
-            //binding
-
             Keyboard.Focus(cmbCustomers);
         }
 
@@ -624,8 +619,6 @@ namespace Costea_Cosmina_lab6
 
             btnPrevO.IsEnabled = false;
             btnNextO.IsEnabled = false;
-
-            //binding
         }
 
         private void btnSaveO_Click(object sender, RoutedEventArgs e)
@@ -651,6 +644,21 @@ namespace Costea_Cosmina_lab6
                 {
                     MessageBox.Show(ex.Message);
                 }
+                BindDataGrid();
+                customerOrdersViewSource.View.Refresh();
+
+                btnNewO.IsEnabled = true;
+                btnEditO.IsEnabled = true;
+                btnDeleteO.IsEnabled = true;
+
+                btnSaveO.IsEnabled = false;
+                btnCancelO.IsEnabled = false;
+
+                btnPrevO.IsEnabled = true;
+                btnNextO.IsEnabled = true;
+
+                cmbCustomers.IsEnabled = false;
+                cmbInventory.IsEnabled = false;
             }
             else if (action == ActionState.Edit)
             {
@@ -671,7 +679,20 @@ namespace Costea_Cosmina_lab6
                     MessageBox.Show(ex.Message);
                 }
                 BindDataGrid();
-                customerViewSource.View.MoveCurrentTo(selectedOrder);
+                customerOrdersViewSource.View.Refresh();
+
+                btnNewO.IsEnabled = true;
+                btnEditO.IsEnabled = true;
+                btnDeleteO.IsEnabled = true;
+
+                btnSaveO.IsEnabled = false;
+                btnCancelO.IsEnabled = false;
+
+                btnPrevO.IsEnabled = true;
+                btnNextO.IsEnabled = true;
+
+                cmbCustomers.IsEnabled = false;
+                cmbInventory.IsEnabled = false;
             }
             else if (action == ActionState.Delete)
             {
@@ -692,6 +713,20 @@ namespace Costea_Cosmina_lab6
                 {
                     MessageBox.Show(ex.Message);
                 }
+                customerOrdersViewSource.View.Refresh();
+
+                btnNewO.IsEnabled = true;
+                btnEditO.IsEnabled = true;
+                btnDeleteO.IsEnabled = true;
+
+                btnSaveO.IsEnabled = false;
+                btnCancelO.IsEnabled = false;
+
+                btnPrevO.IsEnabled = true;
+                btnNextO.IsEnabled = true;
+
+                cmbCustomers.IsEnabled = false;
+                cmbInventory.IsEnabled = false;
             }
         }
         private void btnCancelO_Click(object sender, RoutedEventArgs e)
@@ -710,8 +745,6 @@ namespace Costea_Cosmina_lab6
 
             cmbCustomers.IsEnabled = false;
             cmbInventory.IsEnabled = false;
-
-            //binding
         }
 
         private void btnPrevO_Click(object sender, RoutedEventArgs e)

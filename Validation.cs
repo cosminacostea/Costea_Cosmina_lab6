@@ -7,12 +7,8 @@ using System.Windows.Controls;
 
 namespace Costea_Cosmina_lab6
 {
-    //validator pentru camp required
     public class StringNotEmpty : ValidationRule
     {
-        //mostenim din clasa ValidationRule
-        //suprascriem metoda Validate ce returneaza un
-        //ValidationResult
         public override ValidationResult Validate(object value,
         System.Globalization.CultureInfo cultureinfo)
         {
@@ -22,7 +18,6 @@ namespace Costea_Cosmina_lab6
             return new ValidationResult(true, null);
         }
     }
-    //validator pentru lungime minima a string-ului
     public class StringMinLengthValidator : ValidationRule
     {
         public override ValidationResult Validate(object value,
