@@ -57,7 +57,7 @@
                     <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="45,51,0,0" VerticalAlignment="Top" Width="75" Click="btnNew_Click"/>
                     <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="45,97,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click"/>
                     <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="45,141,0,0" VerticalAlignment="Top" Width="75" Click="btnDelete_Click"/>
-                    <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click">
+                    <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click" IsEnabled="False">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="IsEnabled" Value="false" />
@@ -72,7 +72,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
+                    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click" IsEnabled="False"/>
                     <Button x:Name="btnPrev" Content="Previous" HorizontalAlignment="Left" Margin="301,161,0,0" VerticalAlignment="Top" Width="75" Click="btnPrev_Click"/>
                     <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="626,166,0,0" VerticalAlignment="Top" Width="75" Click="btnNext_Click"/>
                 </Grid>
@@ -106,8 +106,8 @@
                     <Button x:Name="btnNewI" Content="New" HorizontalAlignment="Left" Margin="45,51,0,0" VerticalAlignment="Top" Width="75" Click="btnNewI_Click"/>
                     <Button x:Name="btnEditI" Content="Edit" HorizontalAlignment="Left" Margin="45,97,0,0" VerticalAlignment="Top" Width="75" Click="btnEditI_Click"/>
                     <Button x:Name="btnDeleteI" Content="Delete" HorizontalAlignment="Left" Margin="45,141,0,0" VerticalAlignment="Top" Width="75" Click="btnDeleteI_Click"/>
-                    <Button x:Name="btnSaveI" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveI_Click"/>
-                    <Button x:Name="btnCancelI" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelI_Click"/>
+                    <Button x:Name="btnSaveI" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveI_Click" IsEnabled="False"/>
+                    <Button x:Name="btnCancelI" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelI_Click" IsEnabled="False"/>
                     <Button x:Name="btnPrevI" Content="Previous" HorizontalAlignment="Left" Margin="301,161,0,0" VerticalAlignment="Top" Width="75" Click="btnPrevI_Click"/>
                     <Button x:Name="btnNextI" Content="Next" HorizontalAlignment="Left" Margin="626,166,0,0" VerticalAlignment="Top" Width="75" Click="btnNextI_Click"/>
                 </Grid>
@@ -155,8 +155,8 @@
                     <Button x:Name="btnNewO" Content="New" HorizontalAlignment="Left" Margin="45,51,0,0" VerticalAlignment="Top" Width="75" Click="btnNewO_Click"/>
                     <Button x:Name="btnEditO" Content="Edit" HorizontalAlignment="Left" Margin="45,97,0,0" VerticalAlignment="Top" Width="75" Click="btnEditO_Click"/>
                     <Button x:Name="btnDeleteO" Content="Delete" HorizontalAlignment="Left" Margin="45,141,0,0" VerticalAlignment="Top" Width="75" Click="btnDeleteO_Click"/>
-                    <Button x:Name="btnSaveO" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveO_Click"/>
-                    <Button x:Name="btnCancelO" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelO_Click"/>
+                    <Button x:Name="btnSaveO" Content="Save" HorizontalAlignment="Left" Margin="45,215,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveO_Click" IsEnabled="False"/>
+                    <Button x:Name="btnCancelO" Content="Cancel" HorizontalAlignment="Left" Margin="45,260,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelO_Click" IsEnabled="False"/>
                     <Button x:Name="btnPrevO" Content="Previous" HorizontalAlignment="Left" Margin="150,267,0,0" VerticalAlignment="Top" Width="75" Click="btnPrevO_Click"/>
                     <Button x:Name="btnNextO" Content="Next" HorizontalAlignment="Left" Margin="475,272,0,0" VerticalAlignment="Top" Width="75" Click="btnNextO_Click"/>
                 </Grid>
