@@ -31,17 +31,15 @@ namespace Costea_Cosmina_lab6
     public partial class MainWindow : Window
     {
         ActionState action = ActionState.Nothing;
-
         AutoLotEntitiesModel ctx = new AutoLotEntitiesModel();
+
         CollectionViewSource customerViewSource;
         CollectionViewSource customerOrdersViewSource;
         CollectionViewSource inventoryViewSource;
 
-        Binding custIdTextBoxBinding = new Binding();
         Binding firstNameTextBoxBinding = new Binding();
         Binding lastNameTextBoxBinding = new Binding();
 
-        Binding carIdTextBoxBinding = new Binding();
         Binding colorTextBoxBinding = new Binding();
         Binding makeTextBoxBinding = new Binding();
         public MainWindow()
@@ -49,11 +47,9 @@ namespace Costea_Cosmina_lab6
             InitializeComponent();
             DataContext = this;
 
-            custIdTextBoxBinding.Path = new PropertyPath("CustId");
             firstNameTextBoxBinding.Path = new PropertyPath("FirstName");
             lastNameTextBoxBinding.Path = new PropertyPath("LastName");
 
-            carIdTextBoxBinding.Path = new PropertyPath("CarId");
             colorTextBoxBinding.Path = new PropertyPath("Color");
             makeTextBoxBinding.Path = new PropertyPath("Make");
         }
@@ -138,11 +134,9 @@ namespace Costea_Cosmina_lab6
             firstNameTextBox.IsEnabled = true;
             lastNameTextBox.IsEnabled = true;
 
-            BindingOperations.ClearBinding(custIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(firstNameTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(lastNameTextBox, TextBox.TextProperty);
 
-            custIdTextBox.Text = "";
             firstNameTextBox.Text = "";
             lastNameTextBox.Text = "";
 
@@ -152,7 +146,7 @@ namespace Costea_Cosmina_lab6
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             action = ActionState.Edit;
-            string tempCustId = custIdTextBox.Text.ToString();
+
             string tempFirstName = firstNameTextBox.Text.ToString();
             string tempLastName = lastNameTextBox.Text.ToString();
 
@@ -170,11 +164,9 @@ namespace Costea_Cosmina_lab6
             firstNameTextBox.IsEnabled = true;
             lastNameTextBox.IsEnabled = true;
 
-            BindingOperations.ClearBinding(custIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(firstNameTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(lastNameTextBox, TextBox.TextProperty);
 
-            custIdTextBox.Text = tempCustId;
             firstNameTextBox.Text = tempFirstName;
             lastNameTextBox.Text = tempLastName;
 
@@ -186,7 +178,6 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Delete;
 
-            string tempcustIdTextBox = custIdTextBox.Text.ToString();
             string tempfirstNameTextBox = firstNameTextBox.Text.ToString();
             string templastNameTextBox = lastNameTextBox.Text.ToString();
 
@@ -200,11 +191,9 @@ namespace Costea_Cosmina_lab6
             btnPrev.IsEnabled = false;
             btnNext.IsEnabled = false;
 
-            BindingOperations.ClearBinding(custIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(firstNameTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(lastNameTextBox, TextBox.TextProperty);
 
-            custIdTextBox.Text = tempcustIdTextBox;
             firstNameTextBox.Text = tempfirstNameTextBox;
             lastNameTextBox.Text = templastNameTextBox;
         }
@@ -221,6 +210,7 @@ namespace Costea_Cosmina_lab6
                         FirstName = firstNameTextBox.Text.Trim(),
                         LastName = lastNameTextBox.Text.Trim()
                     };
+                    SetValidationBinding();
                     ctx.Customers.Add(customer);
                     customerViewSource.View.Refresh();
                     ctx.SaveChanges();
@@ -248,6 +238,7 @@ namespace Costea_Cosmina_lab6
                 try
                 {
                     customer = (Customer)customerDataGrid.SelectedItem;
+                    SetValidationBinding();
                     customer.FirstName = firstNameTextBox.Text.Trim();
                     customer.LastName = lastNameTextBox.Text.Trim();
                     ctx.SaveChanges();
@@ -273,7 +264,6 @@ namespace Costea_Cosmina_lab6
                 firstNameTextBox.IsEnabled = false;
                 lastNameTextBox.IsEnabled = false;
 
-                custIdTextBox.SetBinding(TextBox.TextProperty, custIdTextBoxBinding);
                 firstNameTextBox.SetBinding(TextBox.TextProperty, firstNameTextBoxBinding);
                 lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameTextBoxBinding);
             }
@@ -304,7 +294,6 @@ namespace Costea_Cosmina_lab6
                     firstNameTextBox.IsEnabled = false;
                     lastNameTextBox.IsEnabled = false;
 
-                    custIdTextBox.SetBinding(TextBox.TextProperty, custIdTextBoxBinding);
                     firstNameTextBox.SetBinding(TextBox.TextProperty, firstNameTextBoxBinding);
                     lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameTextBoxBinding);
             }
@@ -329,7 +318,6 @@ namespace Costea_Cosmina_lab6
             firstNameTextBox.IsEnabled = false;
             lastNameTextBox.IsEnabled = false;
 
-            custIdTextBox.SetBinding(TextBox.TextProperty, custIdTextBoxBinding);
             firstNameTextBox.SetBinding(TextBox.TextProperty, firstNameTextBoxBinding);
             lastNameTextBox.SetBinding(TextBox.TextProperty, lastNameTextBoxBinding);
         }
@@ -361,11 +349,9 @@ namespace Costea_Cosmina_lab6
             colorTextBox.IsEnabled = true;
             makeTextBox.IsEnabled = true;
 
-            BindingOperations.ClearBinding(carIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(colorTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(makeTextBox, TextBox.TextProperty);
 
-            carIdTextBox.Text = "";
             colorTextBox.Text = "";
             makeTextBox.Text = "";
 
@@ -374,7 +360,7 @@ namespace Costea_Cosmina_lab6
         private void btnEditI_Click(object sender, RoutedEventArgs e)
         {
             action = ActionState.Edit;
-            string tempCarId = carIdTextBox.Text.ToString();
+
             string tempColor = colorTextBox.Text.ToString();
             string tempMake = makeTextBox.Text.ToString();
 
@@ -392,11 +378,9 @@ namespace Costea_Cosmina_lab6
             colorTextBox.IsEnabled = true;
             makeTextBox.IsEnabled = true;
 
-            BindingOperations.ClearBinding(carIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(colorTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(makeTextBox, TextBox.TextProperty);
 
-            carIdTextBox.Text = tempCarId;
             makeTextBox.Text = tempMake;
             colorTextBox.Text = tempColor;
 
@@ -407,7 +391,6 @@ namespace Costea_Cosmina_lab6
         {
             action = ActionState.Delete;
 
-            string tempcarIdTextBox = carIdTextBox.Text.ToString();
             string tempcolorTextBox = colorTextBox.Text.ToString();
             string tempmakeTextBox = makeTextBox.Text.ToString();
 
@@ -421,11 +404,9 @@ namespace Costea_Cosmina_lab6
             btnPrevI.IsEnabled = false;
             btnNextI.IsEnabled = false;
 
-            BindingOperations.ClearBinding(carIdTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(colorTextBox, TextBox.TextProperty);
             BindingOperations.ClearBinding(makeTextBox, TextBox.TextProperty);
 
-            carIdTextBox.Text = tempcarIdTextBox;
             colorTextBox.Text = tempcolorTextBox;
             makeTextBox.Text = tempmakeTextBox;
         }
@@ -495,9 +476,6 @@ namespace Costea_Cosmina_lab6
                 colorTextBox.IsEnabled = false;
                 makeTextBox.IsEnabled = false;
 
-                carIdTextBox.SetBinding(TextBox.TextProperty, carIdTextBoxBinding);
-                colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
-                makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
             }
             else if (action == ActionState.Delete)
             {
@@ -526,10 +504,6 @@ namespace Costea_Cosmina_lab6
                 carIdTextBox.IsEnabled = false;
                 colorTextBox.IsEnabled = false;
                 makeTextBox.IsEnabled = false;
-
-                carIdTextBox.SetBinding(TextBox.TextProperty, carIdTextBoxBinding);
-                colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
-                makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
             }
         }
 
@@ -551,7 +525,6 @@ namespace Costea_Cosmina_lab6
             colorTextBox.IsEnabled = false;
             makeTextBox.IsEnabled = false;
 
-            carIdTextBox.SetBinding(TextBox.TextProperty, carIdTextBoxBinding);
             colorTextBox.SetBinding(TextBox.TextProperty, colorTextBoxBinding);
             makeTextBox.SetBinding(TextBox.TextProperty, makeTextBoxBinding);
         }
